@@ -5,7 +5,9 @@ import java.util.Optional;
 
 public interface ItemStore<T> {
     
-	public void loadItem(List<T> items) throws Exception;
+	public void loadItem(List<T> items);
 	
 	public Optional<List<T>> getItems(int quantity);
+	
+	public List<T> listItems();
 }

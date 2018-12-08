@@ -12,6 +12,12 @@ public class PlaygroundApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(PlaygroundApplication.class, args);
 		ChoclolateVendingMachine vendingMachine = ctx.getBean(ChoclolateVendingMachine.class);	
-		System.out.println("Print--------"+vendingMachine.getChocolates(10).size());
+		
+		
+		vendingMachine.listChocolates();
+		
+		//vendingMachine.getChocolates(20);
+		
+		System.out.println("Print--------"+vendingMachine.getChocolates(2).size());
 	}
 }

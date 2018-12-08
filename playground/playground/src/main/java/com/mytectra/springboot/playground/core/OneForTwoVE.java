@@ -1,25 +1,31 @@
 package com.mytectra.springboot.playground.core;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.mytectra.springboot.playground.datastore.ItemStore;
 import com.mytectra.springboot.playground.model.Chocolate;
 
 @Component
 public class OneForTwoVE implements VendingEngine<Chocolate> {
 
+	@Autowired
+	@Qualifier("chocolateStore")
+	private ItemStore<Chocolate> itemStore;
+	
 	@Override
 	public List<Chocolate> getItems(int money) throws Exception {
 		
-		List<Chocolate> chocolates = new ArrayList<>(money * 2);
-		for(int i = 0 ; i < money ; i++) {
-			chocolates.add(new Chocolate("Toffy-"+i, "parle", 1));
-			chocolates.add(new Chocolate("Mango bite-"+i, "parle", 1));
-
+	    Optional<List<Chocolate>> chocolates = itemStore.getItems(money * 2);
+		if(chocolates.isPresent()) {
+			return chocolates.get();
+		} else {
+			throw new Exception("Sorry No Chocolates");
 		}
-		return chocolates;
 		
 	}
 
