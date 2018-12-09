@@ -16,9 +16,15 @@ import com.mytectra.springboot.playground.model.Chocolate;
 @ConditionalOnProperty(name = {"bonus"} ,  havingValue = "true" )
 public class VendingBonanza implements VendingEngine<Chocolate>{
 	
-	@Autowired
-	@Qualifier("defaultCS")
+	
+	
 	private ItemStore<Chocolate> itemStore;
+	
+	@Autowired
+	public VendingBonanza(@Qualifier("defaultCS") ItemStore<Chocolate> itemStore) {
+		this.itemStore = itemStore;
+	}
+	
 	
 	@Override
 	public List<Chocolate> getItems(int money) throws Exception {

@@ -20,7 +20,7 @@ public class ChocolateStore implements ItemStore<Chocolate> {
 	
 	@Override
 	public void loadItem(List<Chocolate> items) {
-		this.items.addAll(items);
+		//this.items.addAll(items);
 	}
 
 	@Override
