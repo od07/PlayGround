@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: playground
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: admin
+Implementation-Vendor-Id: com.mytectra.springboot
+Build-Jdk: 1.8.0_191
+Implementation-URL: http://projects.spring.io/spring-boot/playground/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
