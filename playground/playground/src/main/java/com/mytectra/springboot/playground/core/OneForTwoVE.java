@@ -14,7 +14,6 @@ import com.mytectra.springboot.playground.model.Chocolate;
 public class OneForTwoVE implements VendingEngine<Chocolate> {
 
 	@Autowired
-	@Qualifier("chocolateStore")
 	private ItemStore<Chocolate> itemStore;
 	
 	@Override

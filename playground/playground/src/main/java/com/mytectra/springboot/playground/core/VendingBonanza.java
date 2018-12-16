@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -19,6 +21,11 @@ public class VendingBonanza implements VendingEngine<Chocolate>{
 	
 	
 	private ItemStore<Chocolate> itemStore;
+	
+	@PostConstruct
+	public void init() {
+		System.out.println("creating bean of Vending Bonanza egerly");
+	}
 	
 	@Autowired
 	public VendingBonanza(@Qualifier("defaultCS") ItemStore<Chocolate> itemStore) {

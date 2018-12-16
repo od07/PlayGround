@@ -32,6 +32,7 @@ public class ChoclolateVendingMachineTest {
 	@Mock
 	private VendingEngine<Chocolate> vendingEngine2;
 
+	
 	@Spy
 	private ArrayList<VendingEngine<Chocolate>> vendingEngs;
 	

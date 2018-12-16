@@ -5,14 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
 import com.mytectra.springboot.playground.datastore.ItemStore;
 import com.mytectra.springboot.playground.model.Chocolate;
 
-@Component
-@Qualifier("defaultCS")
+//We have externalize the configuration
+
 public class ChocolateStore implements ItemStore<Chocolate> {
 
 	private List<Chocolate> items = new ArrayList<>();
@@ -20,7 +17,7 @@ public class ChocolateStore implements ItemStore<Chocolate> {
 	
 	@Override
 	public void loadItem(List<Chocolate> items) {
-		//this.items.addAll(items);
+		this.items.addAll(items);
 	}
 
 	@Override

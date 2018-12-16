@@ -1,7 +1,6 @@
 package com.mytectra.springboot.playground.ui;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -10,36 +9,50 @@ import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.mytectra.springboot.playground.core.VendingEngine;
 import com.mytectra.springboot.playground.datastore.ItemStore;
 import com.mytectra.springboot.playground.model.Chocolate;
 
-@Component
 public class ChoclolateVendingMachine {
 
 	@Autowired
 	private List<VendingEngine<Chocolate>> vendingEngines;
 
 	@Autowired
+	//These are the bean id, which has to be searched for Bean
 	@Qualifier("defaultCS")
 	private ItemStore<Chocolate> itemStore;
+	
 
+	private int numberOfChocloatesToLoad;
+	
 	public ChoclolateVendingMachine(List<VendingEngine<Chocolate>> vendingEngines) {
 		this.vendingEngines = vendingEngines;
 	}
 	
-	@PostConstruct
-	public void init() {
-		System.out.println("init CVM started..");
-		this.addChocolate(new Chocolate("KitKat", "Cadebury", 10));
-		this.addChocolate(new Chocolate("Tuffy", "Cadebury", 1));
-		this.addChocolate(new Chocolate("Cocochoco", "Parley", 15));
-		this.addChocolate(new Chocolate("Walnut", "Cadebury", 5));
-		this.addChocolate(new Chocolate("XYZ", "Cadebury", 2));
+	
+	/**
+	 * @param numberOfChocloatesToLoad the numberOfChocloatesToLoad to set
+	 */
+	public void setNumberOfChocloatesToLoad(int numberOfChocloatesToLoad) {
+		this.numberOfChocloatesToLoad = numberOfChocloatesToLoad;
 	}
 
+
+	//this will be executed after bean is created
+	@PostConstruct
+	public void init() {
+		System.out.println(String.format("CVM init started , loading %d chocolates ", numberOfChocloatesToLoad));
+		for(int i = 0 ; i< numberOfChocloatesToLoad ; i++) {
+			this.addChocolate(new Chocolate("KitKat" + i, "Cadebury", 10));
+		}
+	}
+
+	//this will be executed before bean is destroyed
 	@PreDestroy
 	public void destroy() {
 		System.out.println("init Destroy started..");
