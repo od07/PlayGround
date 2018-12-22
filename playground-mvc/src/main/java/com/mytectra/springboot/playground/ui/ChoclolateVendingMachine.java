@@ -2,16 +2,23 @@ package com.mytectra.springboot.playground.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import javax.websocket.server.PathParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mytectra.springboot.playground.core.VendingEngine;
@@ -20,6 +27,7 @@ import com.mytectra.springboot.playground.model.Chocolate;
 
 @RestController
 public class ChoclolateVendingMachine {
+	public static final Logger logger = LoggerFactory.getLogger(ChoclolateVendingMachine.class);
 
 	@Autowired
 	private List<VendingEngine<Chocolate>> vendingEngines;
@@ -56,10 +64,27 @@ public class ChoclolateVendingMachine {
 	}
 
 	//this will be executed before bean is destroyed
-	@PreDestroy
+	/*@PreDestroy
 	public void destroy() {
 		System.out.println("init Destroy started..");
+	}*/
+	
+	@PostMapping("/chocolates/load")
+	public String loadChocolates(@RequestBody @RequestPart("application/json") @Validated Chocolate chocolate) {
+		logger.info("Loading Chocolates : {} ", chocolate);
+		this.addChocolate(chocolate);        
+        return "Chocolates added sucessfully";
 	}
+	 /*@RequestMapping(value = "/chocolates/load/", method = RequestMethod.POST)
+	    public ResponseEntity<?> loadChocolates(@RequestParam Chocolate chocolate, UriComponentsBuilder ucBuilder) {
+	        logger.info("Loading Chocolates : {} ", chocolate);
+	 
+	        this.addChocolate(chocolate);
+	        
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setLocation(ucBuilder.path("/chocolates/load/{name}").buildAndExpand(chocolate.getName()).toUri());
+	        return new ResponseEntity<String>(headers, HttpStatus.CREATED);
+	    }*/
 	
 	@PostMapping("/chocolates/buy")
 	public List<Chocolate> getChocolates(@RequestParam("money") int money) throws Exception {
@@ -73,7 +98,23 @@ public class ChoclolateVendingMachine {
 			throw e;
 		}
 	}
-
+	
+	
+	@GetMapping("/chocolates/{brandName}")
+	public List<Chocolate> getChocolatesByBrand(@PathVariable("brandName") String brandName) throws Exception {
+		List<Chocolate> chocolates;
+		try {
+			System.out.println("Brand Name " + brandName);
+			chocolates =  itemStore.listItems();
+			chocolates = chocolates.stream().filter(c -> c.getBrand().equals(brandName))
+			.collect(Collectors.toList());
+			return chocolates;
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	
 	private void addChocolate(Chocolate chocolate) {
 		List<Chocolate> listOfChocolates = new ArrayList<Chocolate>();
 		listOfChocolates.add(chocolate);
