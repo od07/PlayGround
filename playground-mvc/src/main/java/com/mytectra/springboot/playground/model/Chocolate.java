@@ -1,19 +1,24 @@
 package com.mytectra.springboot.playground.model;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Range;
 
+@XmlRootElement
 public class Chocolate {
 	
-	@NotNull
+	@NotNull(message = "Chocolate name cannot be null")
+	@Size(min = 3)
 	private String name;
 	
-	@NotNull
+	@NotNull(message = "Chocolate name cannot be null")
+	@Size(min = 3)
 	private String brand;
 	
 	@NotNull
-	@Range(min = 1 , max = 10)
+	@Range(min = 1 , max = 10 ,message = "Out of range price")
 	private int price;
 	
 	public Chocolate() {

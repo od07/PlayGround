@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface VendingEngine<T> {
 	
-	List<T> getItems(int money) throws Exception;
+	List<T> getItems(int money) throws ChocolatesNotFoundException;
 
 }

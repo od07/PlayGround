@@ -16,13 +16,18 @@ public class OneForTwoVE implements VendingEngine<Chocolate> {
 	private ItemStore<Chocolate> itemStore;
 	
 	@Override
-	public List<Chocolate> getItems(int money) throws Exception {
+	public List<Chocolate> getItems(int money) throws ChocolatesNotFoundException {
 		
 	    Optional<List<Chocolate>> chocolates = itemStore.getItems(money * 2);
 		if(chocolates.isPresent()) {
 			return chocolates.get();
 		} else {
-			throw new Exception("Sorry No Chocolates");
+			
+			String errMsg = "Sorry No Chocolates , we cannot fulfill chocolates for money = "+ money;
+			CNFError error = new CNFError();
+			error.setStatus("FULFILL_DENY_!F2");
+			error.setReason(errMsg);
+			throw new ChocolatesNotFoundException(error);
 		}
 		
 	}
