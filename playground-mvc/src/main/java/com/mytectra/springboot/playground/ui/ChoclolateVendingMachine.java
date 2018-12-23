@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.xml.ws.RequestWrapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +74,7 @@ public class ChoclolateVendingMachine {
 
 	@PostMapping("/chocolates/load")
 	public String loadChocolates(@RequestBody @RequestPart("application/json") @Validated Chocolate chocolate) {
-		logger.info("Loading Chocolates : {} ", chocolate);
+		System.out.println("Loading Chocolates : "+ chocolate);
 		this.addChocolate(chocolate);
 		return "Chocolates added sucessfully";
 	}
@@ -132,5 +133,15 @@ public class ChoclolateVendingMachine {
 	public List<Chocolate> listChocolates() {
 		return itemStore.listItems();
 	}
-
+    
+	//Multi JSON Load of chocolates. Read the JSON as an Array
+	@PostMapping("/chocolates/multiload")
+	public String multiLoadChocolates(@RequestBody @RequestPart("application/json") @Validated List<Chocolate> chocolates) {
+		if(chocolates != null) {
+			for(Chocolate chocolate : chocolates) {
+				this.addChocolate(chocolate);
+			}
+		}		
+		return "Multi chocolates added sucessfully";
+	}
 }
