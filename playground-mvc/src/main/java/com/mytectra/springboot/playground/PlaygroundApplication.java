@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 //to start the spring boot application
 @SpringBootApplication
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.PropertySource;
 
 //To load the customized property files
 @PropertySource("classpath:application-beans.properties")
+
 
 public class PlaygroundApplication {
 

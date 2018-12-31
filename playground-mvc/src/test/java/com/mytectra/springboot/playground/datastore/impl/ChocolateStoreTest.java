@@ -25,7 +25,7 @@ public void testChocolateStoteLoadItems()
 	
 	Assert.assertTrue(chocolateStore.listItems().isEmpty());
 	
-	chocolateStore.loadItem(chocolates);
+	chocolateStore.loadItems(chocolates);
 	
 	Assert.assertEquals(chocolates.size(), chocolateStore.listItems().size());
 	

@@ -16,7 +16,7 @@ public class ChocolateStore implements ItemStore<Chocolate> {
 
 	
 	@Override
-	public void loadItem(List<Chocolate> items) {
+	public void loadItems(List<Chocolate> items) {
 		this.items.addAll(items);
 	}
 
@@ -44,6 +44,12 @@ public class ChocolateStore implements ItemStore<Chocolate> {
 	@Override
 	public List<Chocolate> listItems() {
 		return items;
+	}
+
+	@Override
+	public void loadItem(Chocolate item) {
+		items.add(item);
+		
 	}
 
 }

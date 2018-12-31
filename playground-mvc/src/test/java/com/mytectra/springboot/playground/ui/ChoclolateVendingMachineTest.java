@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.mytectra.springboot.playground.core.VendingEngine;
 import com.mytectra.springboot.playground.datastore.ItemStore;
 import com.mytectra.springboot.playground.model.Chocolate;
+import com.mytectra.springboot.playground.rest.ChoclolateVendingMachine;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ChoclolateVendingMachineTest {
