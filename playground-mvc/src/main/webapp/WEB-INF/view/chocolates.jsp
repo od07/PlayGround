@@ -21,6 +21,7 @@
 </table>
 <hr>
 <h2>Session Chocolates</h2>
+<c:set var="total" value="${0}"/>
 <table>
 <th>
 <td>Name</td>
@@ -32,10 +33,15 @@
 <td>${chocolate.name}</td>
 <td>${chocolate.brand}</td>
 <td>${chocolate.price}</td>
+<c:set var="total" value="${total + chocolate.price}" />
 </tr>
 </c:forEach>
+<tr>
+<td></td>
+<td>Total : </td>
+<td>${total}</td>
+</tr>
 </table>
-
 <hr>
 <h2>Request Chocolates</h2>
 <table>
