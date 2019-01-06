@@ -2,12 +2,16 @@ package com.mytectra.springboot.playground.ui;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mytectra.springboot.playground.datastore.ItemStore;
@@ -72,4 +76,14 @@ public class ChocolateWebController {
 		return modelAndView;
 		
 	}
+	
+	@RequestMapping("/download.do" )
+	public @ResponseBody String download(HttpServletResponse response) {
+		response.setContentType("text/csv");
+		response.setHeader("Content-Disposition", "attachment; filename=\"choco.csv\"");
+		StringBuilder builder =  new StringBuilder("ChocolateName,Brand,Price\n");
+		chocolateStore.listItems().stream().forEach(chocolate -> builder.append(chocolate.toCSV()));
+		return builder.toString();
+	}
+	
 }

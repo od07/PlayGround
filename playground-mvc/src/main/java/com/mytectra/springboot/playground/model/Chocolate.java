@@ -72,5 +72,16 @@ public class Chocolate {
 	}
 	
 	
+	public String toCSV() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(name);
+		builder.append(",");
+		builder.append(brand);
+		builder.append(",");
+		builder.append(price);
+		builder.append("\n");
+		return builder.toString();
+	}
+	
 
 }

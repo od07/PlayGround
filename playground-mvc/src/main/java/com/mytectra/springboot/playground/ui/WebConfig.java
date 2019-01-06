@@ -9,10 +9,16 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+//context.xml
+
 @Configuration
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter  {
 	
+	/*<bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEEB-INF/view/"/>
+	<property name="sufix" value=".jsp"/>
+	</bean>*/
 
 	//Resolve View - JSP
 	@Bean
