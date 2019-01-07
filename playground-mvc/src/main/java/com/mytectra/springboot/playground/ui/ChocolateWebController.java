@@ -65,7 +65,7 @@ public class ChocolateWebController {
 	@RequestMapping(name="/add.do" , method = RequestMethod.POST )
 	public String add(Chocolate chocloate) {
 		chocolateStore.loadItem(chocloate);
-		return "redirect:/list.do";
+		return "redirect:list.do";
 		
 	}
 	

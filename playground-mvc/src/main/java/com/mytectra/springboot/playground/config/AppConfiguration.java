@@ -2,7 +2,6 @@ package com.mytectra.springboot.playground.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 
 import com.mytectra.springboot.playground.datastore.impl.ChocolateStore;

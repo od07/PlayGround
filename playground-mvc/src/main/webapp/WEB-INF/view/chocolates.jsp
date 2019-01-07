@@ -8,6 +8,7 @@
 <td>Name</td>
 <td>Brand</td>
 <td>Price</td>
+<td>Date</td>
 <td>Action</td>
 </th>
 <c:forEach  items="${chocolates}" var="chocolate">
@@ -15,7 +16,9 @@
 <td>${chocolate.name}</td>
 <td>${chocolate.brand}</td>
 <td>${chocolate.price}</td>
-<td><a href="/buy.do?name=${chocolate.name}">buy</a></td>
+<td>${chocolate.expiryDate}</td>
+
+<td><a href="buy.do?name=${chocolate.name}">buy</a></td>
 </tr>
 </c:forEach>
 </table>
@@ -27,12 +30,16 @@
 <td>Name</td>
 <td>Brand</td>
 <td>Price</td>
+<td>Date</td>
+
 </th>
 <c:forEach  items="${sessionChocolates}" var="chocolate">
 <tr>
 <td>${chocolate.name}</td>
 <td>${chocolate.brand}</td>
 <td>${chocolate.price}</td>
+<td>${chocolate.expiryDate}</td>
+
 <c:set var="total" value="${total + chocolate.price}" />
 </tr>
 </c:forEach>
@@ -49,12 +56,15 @@
 <td>Name</td>
 <td>Brand</td>
 <td>Price</td>
+<td>Date</td>
 </th>
 <c:forEach  items="${requestChocolates}" var="chocolate">
 <tr>
 <td>${chocolate.name}</td>
 <td>${chocolate.brand}</td>
 <td>${chocolate.price}</td>
+<td>${chocolate.expiryDate}</td>
+
 </tr>
 </c:forEach>
 </table>

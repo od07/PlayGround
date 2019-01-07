@@ -2,6 +2,7 @@ package com.mytectra.springboot.playground.ui;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -12,7 +13,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 //context.xml
 
 @Configuration
-@EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter  {
 	
 	/*<bean id = "viewResolver" class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,13 +21,13 @@ public class WebConfig extends WebMvcConfigurerAdapter  {
 	</bean>*/
 
 	//Resolve View - JSP
-	@Bean
+	/*@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
 		internalResourceViewResolver.setPrefix("/WEB-INF/view/");
 		internalResourceViewResolver.setSuffix(".jsp");
 		return internalResourceViewResolver;
-	}
+	}*/
 	
 	//Static Resource Mapping
 	

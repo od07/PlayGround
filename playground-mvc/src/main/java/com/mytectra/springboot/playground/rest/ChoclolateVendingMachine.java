@@ -1,6 +1,7 @@
 package com.mytectra.springboot.playground.rest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,7 +67,7 @@ public class ChoclolateVendingMachine {
 	public void init() {
 		System.out.println(String.format("CVM init started , loading %d chocolates ", numberOfChocloatesToLoad));
 		for (int i = 0; i < numberOfChocloatesToLoad; i++) {
-			this.addChocolate(new Chocolate("KitKat" + i, "Cadebury", 10));
+			this.addChocolate(new Chocolate("KitKat" + i, "Cadebury", 10 , new Date()));
 		}
 	}
 
