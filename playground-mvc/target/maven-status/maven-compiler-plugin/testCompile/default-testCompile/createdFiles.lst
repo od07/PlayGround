@@ -1,0 +1,5 @@
+com\mytectra\springboot\playground\datastore\impl\ChocolateStoreTest.class
+com\mytectra\springboot\playground\TestService.class
+com\mytectra\springboot\playground\ui\ChoclolateVendingMachineTest.class
+com\mytectra\springboot\playground\core\VendingBonanzaTest.class
+com\mytectra\springboot\playground\PlaygroundApplicationTests.class

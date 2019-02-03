@@ -1,0 +1,17 @@
+com\mytectra\springboot\playground\model\Chocolate.class
+com\mytectra\springboot\playground\core\ChocolatesNotFoundException.class
+com\mytectra\springboot\playground\ui\WebConfig.class
+com\mytectra\springboot\playground\model\SessionScopeBean.class
+com\mytectra\springboot\playground\rest\ChoclolateVendingMachine.class
+com\mytectra\springboot\playground\ui\ChocolateWebController.class
+com\mytectra\springboot\playground\config\AppConfiguration.class
+com\mytectra\springboot\playground\datastore\impl\ChocolateDao.class
+com\mytectra\springboot\playground\datastore\impl\ChocolateStore.class
+com\mytectra\springboot\playground\model\RequestScopeBean.class
+com\mytectra\springboot\playground\core\CNFError.class
+com\mytectra\springboot\playground\PlaygroundApplication.class
+com\mytectra\springboot\playground\datastore\ItemStore.class
+com\mytectra\springboot\playground\datastore\impl\DBChocolateStore.class
+com\mytectra\springboot\playground\core\VendingEngine.class
+com\mytectra\springboot\playground\core\VendingBonanza.class
+com\mytectra\springboot\playground\core\OneForTwoVE.class
