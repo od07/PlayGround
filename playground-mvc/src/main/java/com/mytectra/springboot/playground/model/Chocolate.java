@@ -2,6 +2,12 @@ package com.mytectra.springboot.playground.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,12 +15,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Range;
 
 @XmlRootElement
+
+//JPA Entity
+@Entity
+
+//map to table
+@Table(name = "chocolate" )
+
 public class Chocolate {
 	
+	@Id
+	@GeneratedValue
+	@Column(name = "cid")
+	private int id;
+	
+	@Column(name="cname")
 	@NotNull(message = "Chocolate name cannot be null")
 	@Size(min = 3)
 	private String name;
 	
+	//@Transient
 	@NotNull(message = "Chocolate name cannot be null")
 	@Size(min = 3)
 	private String brand;
@@ -23,7 +43,8 @@ public class Chocolate {
 	@Range(min = 1 , max = 10 ,message = "Out of range price")
 	private int price;
 	
-	@NotNull
+	
+	@Column(name = "expriry")
 	private Date expiryDate;
 		
 	public Chocolate() {

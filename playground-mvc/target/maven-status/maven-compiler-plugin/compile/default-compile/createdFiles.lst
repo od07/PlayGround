@@ -4,6 +4,7 @@ com\mytectra\springboot\playground\ui\WebConfig.class
 com\mytectra\springboot\playground\model\SessionScopeBean.class
 com\mytectra\springboot\playground\rest\ChoclolateVendingMachine.class
 com\mytectra\springboot\playground\ui\ChocolateWebController.class
+com\mytectra\springboot\playground\datastore\impl\ChocolateExtractor.class
 com\mytectra\springboot\playground\config\AppConfiguration.class
 com\mytectra\springboot\playground\datastore\impl\ChocolateDao.class
 com\mytectra\springboot\playground\datastore\impl\ChocolateStore.class
