@@ -9,7 +9,8 @@
 <td>Brand</td>
 <td>Price</td>
 <td>Date</td>
-<td>Action</td>
+<td>Buy</td>
+<td>Update</td>
 </th>
 <c:forEach  items="${chocolates}" var="chocolate">
 <tr>
@@ -19,6 +20,7 @@
 <td>${chocolate.expiryDate}</td>
 
 <td><a href="buy.do?name=${chocolate.name}">buy</a></td>
+<td><a href="updateDisplay.do?name=${chocolate.name}">update</a></td>
 </tr>
 </c:forEach>
 </table>

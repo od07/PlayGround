@@ -52,4 +52,16 @@ public class ChocolateStore implements ItemStore<Chocolate> {
 		
 	}
 
+	@Override
+	public Chocolate getItemByName(String chocolateName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateChocolate(Chocolate chocolate) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

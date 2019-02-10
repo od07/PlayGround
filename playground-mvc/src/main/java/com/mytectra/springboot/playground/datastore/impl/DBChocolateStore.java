@@ -19,7 +19,6 @@ import com.mytectra.springboot.playground.model.Chocolate;
 @Primary
 public class DBChocolateStore implements ItemStore<Chocolate> {
 	
-	private List<Chocolate> chocolatesFromDb = new ArrayList<>();
 	
 	@Autowired
 	private IChocolateDao dao;
@@ -38,21 +37,26 @@ public class DBChocolateStore implements ItemStore<Chocolate> {
 
 	@Override
 	public Optional<List<Chocolate>> getItems(int quantity) {
-		if(quantity <= chocolatesFromDb.size()) {
+		//TODO
+		/*if(quantity <= chocolatesFromDb.size()) {
 			return fulfillItems(quantity);
 		} else {
 			return Optional.empty();
-		}
+		}*/
+		return Optional.empty();
 	}
 
 	@Override
 	public List<Chocolate> listItems() {
-		this.chocolatesFromDb.addAll(dao.findAll());
-		return chocolatesFromDb;
+		List<Chocolate> list = dao.findAll("Cadebury");
+		Chocolate ch = list.get(0);
+		ch.setPrice(7);
+		dao.update(ch);
+		return list;
 	}
 
 	private Optional<List<Chocolate>> fulfillItems(int quantity) {
-		List<Chocolate> itemsToBeReturned = new ArrayList<>();
+		/*List<Chocolate> itemsToBeReturned = new ArrayList<>();
 		int count = 0;
 		Iterator<Chocolate> iterate = chocolatesFromDb.iterator();
 		while(iterate.hasNext() && count < quantity) {
@@ -60,7 +64,18 @@ public class DBChocolateStore implements ItemStore<Chocolate> {
 			iterate.remove();
 			count++;
 		}
-		return Optional.ofNullable(itemsToBeReturned);
+		return Optional.ofNullable(itemsToBeReturned);*/
+		return Optional.empty();
+		
+	}
+	
+	public Chocolate getItemByName(String chocolateName) {
+		return dao.findByChocolate(chocolateName);
+	}
+
+	@Override
+	public void updateChocolate(Chocolate chocolate) {
+		dao.updateChocolate(chocolate);
 		
 	}
 	

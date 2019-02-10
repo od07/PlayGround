@@ -40,4 +40,28 @@ public class ChocolateJDBCDao implements IChocolateDao {
 		return (List<Chocolate>) jdbcTemplate.query(GET_ALL_QUERY,extractor);		
 	}
 
+	@Override
+	public void update(Chocolate chocolate) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Chocolate> findAll(String brand) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Chocolate findByChocolate(String chocolateName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateChocolate(Chocolate chocolate) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

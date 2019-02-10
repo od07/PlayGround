@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,7 +65,7 @@ public class ChocolateWebController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(name="/add.do" , method = RequestMethod.POST )
+	@RequestMapping(path="/add.do" , method = RequestMethod.POST )
 	public String add(@Validated Chocolate chocloate) {
 		chocloate.setExpiryDate(new Date());
 		chocolateStore.loadItem(chocloate);
@@ -72,12 +73,28 @@ public class ChocolateWebController {
 		
 	}
 	
-	@RequestMapping(name="/addDisplay.do")
+	@RequestMapping(path="/addDisplay.do")
 	public ModelAndView addDisplay() {
 		ModelAndView modelAndView = new ModelAndView("chocolatesAdd");
 		modelAndView.addObject("chocolate", new Chocolate());
 		return modelAndView;
 		
+	}
+	
+	@RequestMapping(path = "/update.do", method = RequestMethod.POST)
+	public String update(@ModelAttribute Chocolate chocolate) {
+		System.out.println(chocolate);
+		chocolateStore.updateChocolate(chocolate);
+		return "redirect:list.do";
+		
+	}
+	
+	@RequestMapping(path= "/updateDisplay.do" , method = RequestMethod.GET)
+	public ModelAndView updateDisplay(@RequestParam(value="name") String chocolateName) {
+		Chocolate chocolate = chocolateStore.getItemByName(chocolateName);
+		ModelAndView modelAndView = new ModelAndView("updateChocolates");
+		modelAndView.addObject("updateChocolate", chocolate);
+		return modelAndView;		
 	}
 	
 	@RequestMapping("/download.do" )
