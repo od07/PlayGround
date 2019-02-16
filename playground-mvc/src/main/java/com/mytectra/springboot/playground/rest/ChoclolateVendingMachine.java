@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.security.RolesAllowed;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,6 +80,7 @@ public class ChoclolateVendingMachine {
 	}*/
 
 	@PostMapping("/chocolates/load")
+	@Secured("ADMIN")
 	public String loadChocolates(@RequestBody @RequestPart("application/json") @Validated Chocolate chocolate) {
 		System.out.println("Loading Chocolates : "+ chocolate);
 		this.addChocolate(chocolate);
@@ -97,6 +101,7 @@ public class ChoclolateVendingMachine {
 	 */
 
 	@PostMapping("/chocolates/buy")
+	@RolesAllowed({"ADMIN" , "USER"})
 	public List<Chocolate> getChocolates(@RequestParam("money") int money) throws Exception {
 		List<Chocolate> chocolates = new ArrayList<>();
 		for (VendingEngine<? extends Chocolate> engine : vendingEngines) {
@@ -132,6 +137,7 @@ public class ChoclolateVendingMachine {
 	}
 
 	@GetMapping("/chocolates")
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Chocolate> listChocolates() {
 		return itemStore.listItems();
 	}
