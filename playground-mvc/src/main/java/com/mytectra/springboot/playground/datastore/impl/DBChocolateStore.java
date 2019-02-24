@@ -48,10 +48,12 @@ public class DBChocolateStore implements ItemStore<Chocolate> {
 
 	@Override
 	public List<Chocolate> listItems() {
-		List<Chocolate> list = dao.findAll("Cadebury");
+		List<Chocolate> list = dao.findAll();
+		/*List<Chocolate> list = dao.findAll("Cadebury");
 		Chocolate ch = list.get(0);
 		ch.setPrice(7);
 		dao.update(ch);
+		return list;*/
 		return list;
 	}
 
