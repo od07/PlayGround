@@ -34,6 +34,12 @@ import com.mytectra.springboot.playground.datastore.ItemStore;
 import com.mytectra.springboot.playground.model.Chocolate;
 import com.mytectra.springboot.playground.model.RequestScopeBean;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiKeyAuthDefinition;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Authorization;
+
 @RestController
 public class ChoclolateVendingMachine {
 	public static final Logger logger = LoggerFactory.getLogger(ChoclolateVendingMachine.class);
@@ -81,6 +87,7 @@ public class ChoclolateVendingMachine {
 
 	@PostMapping("/chocolates/load")
 	@Secured("ADMIN")
+	@ApiOperation(authorizations = {@Authorization("basicAuth")}, value = "")
 	public String loadChocolates(@RequestBody @RequestPart("application/json") @Validated Chocolate chocolate) {
 		System.out.println("Loading Chocolates : "+ chocolate);
 		this.addChocolate(chocolate);
@@ -137,7 +144,8 @@ public class ChoclolateVendingMachine {
 	}
 
 	@GetMapping("/chocolates")
-	@PreAuthorize("hasRole('ADMIN')")
+	@Secured({"ADMIN"})
+	@ApiOperation(value = "Lits all the choclolates" , authorizations = {@Authorization("basicAuth")}) 
 	public List<Chocolate> listChocolates() {
 		return itemStore.listItems();
 	}

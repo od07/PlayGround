@@ -24,8 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) {
 		try {
+			http.authorizeRequests().and().csrf().disable();
 			//disabled csrf deu to postman not getting the X_CSRF tocken coookie
-			http.csrf().disable();
+			//http.csrf().disable();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
