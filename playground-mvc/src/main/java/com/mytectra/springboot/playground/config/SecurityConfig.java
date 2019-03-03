@@ -2,7 +2,6 @@ package com.mytectra.springboot.playground.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,16 +15,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private UserDetailsService userDetails;
-	
+		
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetails);
+	protected UserDetailsService userDetailsService() {
+		return userDetails;
 	}
-	
 	protected void configure(HttpSecurity http) {
+		// Always put basic authentication (.httpBasic) at the end, as we are using basic authentication over here.
+		// Otherwise, application will consider the web authentication (username & password).
 		try {
-			http.authorizeRequests().and().csrf().disable();
-			//disabled csrf deu to postman not getting the X_CSRF tocken coookie
+			http
+			.userDetailsService(userDetails)
+				.authorizeRequests()
+				.antMatchers("/swagger-ui.html" , "/webjars/**" , "/swagger-resources/**" , "/v2/api-docs/**")
+				.anonymous()
+			.and()
+				.authorizeRequests()
+				.antMatchers("/**")
+				.authenticated()
+			.and()
+			.httpBasic(); 
+			
+			//disabled csrf due to postman not getting the X_CSRF token cookie
 			//http.csrf().disable();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

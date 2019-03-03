@@ -144,7 +144,8 @@ public class ChoclolateVendingMachine {
 	}
 
 	@GetMapping("/chocolates")
-	@Secured({"ADMIN"})
+
+	@RolesAllowed("ROLE_USER")
 	@ApiOperation(value = "Lits all the choclolates" , authorizations = {@Authorization("basicAuth")}) 
 	public List<Chocolate> listChocolates() {
 		return itemStore.listItems();

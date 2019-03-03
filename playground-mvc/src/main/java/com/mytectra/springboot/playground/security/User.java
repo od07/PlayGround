@@ -24,7 +24,7 @@ public class User implements UserDetails {
 
 	@Override
 	public String getAuthority() {
-		return this.name();
+		return "ROLE_" + this.name();
 	}};
 	
 	private Role role;
