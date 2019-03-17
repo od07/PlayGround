@@ -38,12 +38,14 @@ public class DBChocolateStore implements ItemStore<Chocolate> {
 	@Override
 	public Optional<List<Chocolate>> getItems(int quantity) {
 		//TODO
+		
+		return Optional.of(dao.findAll());
+		
 		/*if(quantity <= chocolatesFromDb.size()) {
 			return fulfillItems(quantity);
 		} else {
 			return Optional.empty();
 		}*/
-		return Optional.empty();
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public class User implements UserDetails {
 	public enum Role implements GrantedAuthority 
 	
 	{
-		ADMIN , USER;
+		ADMIN , USER , ACTUATOR;
 
 	@Override
 	public String getAuthority() {

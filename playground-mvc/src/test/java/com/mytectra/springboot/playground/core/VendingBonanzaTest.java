@@ -46,7 +46,7 @@ public class VendingBonanzaTest {
 	@Test
 	public void testGetItems2() throws Exception {
 		ItemStore<Chocolate> cItemStore = Mockito.mock(ItemStore.class);
-		VendingBonanza bonanza = new VendingBonanza(cItemStore);
+		VendingBonanza bonanza = new VendingBonanza(cItemStore, null);
 		
 		List<Chocolate> bonuzChocloates = bonanza.getItems(3);
 		Assert.assertEquals(0, bonuzChocloates.size());
@@ -67,7 +67,7 @@ public class VendingBonanzaTest {
 	@Test(expected = Exception.class)
 	public void testGetItems3() throws Exception {
 		ItemStore<Chocolate> cItemStore = Mockito.mock(ItemStore.class);
-		VendingBonanza bonanza = new VendingBonanza(cItemStore);
+		VendingBonanza bonanza = new VendingBonanza(cItemStore, null);
 		
 		List<Chocolate> bonuzChocloates = bonanza.getItems(3);
 		Assert.assertEquals(0, bonuzChocloates.size());

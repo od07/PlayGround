@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.security.RolesAllowed;
 
+import org.hibernate.validator.constraints.br.TituloEleitoral;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,7 +109,11 @@ public class ChoclolateVendingMachine {
 	 */
 
 	@PostMapping("/chocolates/buy")
-	@RolesAllowed({"ADMIN" , "USER"})
+	//classic security
+	//@RolesAllowed({"ADMIN" , "USER"})
+	
+	//oauth security
+	@PreAuthorize("#oauth2.hasScope('write')")
 	public List<Chocolate> getChocolates(@RequestParam("money") int money) throws Exception {
 		List<Chocolate> chocolates = new ArrayList<>();
 		for (VendingEngine<? extends Chocolate> engine : vendingEngines) {

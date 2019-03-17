@@ -1,16 +1,13 @@
 package com.mytectra.springboot.playground.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-@Configuration
+/*@Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true, jsr250Enabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true, jsr250Enabled = true)*/
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -34,7 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**")
 				.authenticated()
 			.and()
-			.httpBasic(); 
+				.httpBasic()
+			.and()
+				.csrf()
+				.disable();
 			
 			//disabled csrf due to postman not getting the X_CSRF token cookie
 			//http.csrf().disable();

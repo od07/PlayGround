@@ -11,10 +11,11 @@ public class TestService {
 //test your service	
 @Test
  public void testService() throws Exception {
-		URL url = new URL("http://localhost:8080/chocolates/Cadebury");
+		URL url = new URL("http://localhost:8080/cvm/1.0/chocolates");
 
 		URLConnection con = url.openConnection();
 		con.setRequestProperty("content-type", "application/json");
+		con.setRequestProperty("Authorization", "Bearer 71ccb6a3-797b-433a-9065-03a6fd2bb567");
 
 		InputStreamReader osw = new InputStreamReader(con.getInputStream());
 		int ch = 0;
